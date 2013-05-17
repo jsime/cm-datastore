@@ -6,7 +6,7 @@ use warnings FATAL => 'all';
 
 =head1 NAME
 
-Catalyst::Model::DBIx::DataStore - The great new Catalyst::Model::DBIx::DataStore!
+Catalyst::Model::DBIx::DataStore
 
 =head1 VERSION
 
@@ -19,14 +19,10 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+A very simple Catalyst Model which wraps DBIx::DataStore, with the main goal to
+provide a common way to retrieve a server lifetime database handler.
 
-Perhaps a little code snippet.
-
-    use Catalyst::Model::DBIx::DataStore;
-
-    my $foo = Catalyst::Model::DBIx::DataStore->new();
-    ...
+    ... usage ...
 
 =head1 EXPORT
 
@@ -92,9 +88,6 @@ L<http://search.cpan.org/dist/Catalyst-Model-DBIx-DataStore/>
 =back
 
 
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2013 Jon Sime.
@@ -108,4 +101,4 @@ See L<http://dev.perl.org/licenses/> for more information.
 
 =cut
 
-1; # End of Catalyst::Model::DBIx::DataStore
+1;
