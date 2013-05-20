@@ -4,6 +4,8 @@ use 5.010;
 use strict;
 use warnings FATAL => 'all';
 
+use DBIx::DataStore ( config => 'yaml' );
+
 =head1 NAME
 
 Catalyst::Model::DBIx::DataStore
@@ -31,18 +33,33 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 new
+
+Initializes the model's database connection
 
 =cut
 
-sub function1 {
+sub new {
+    my $self = shift->next::method(@_);
+    my ($c, $config) = @_;
+
+    die "No datastore configured!" unless exists $config->{'datastore'};
+
+    $self->{'dbh'} = DBIx::DataStore->new($config->{'datastore'});
+
+    return $self;
 }
 
-=head2 function2
+=head2 db
+
+Returns the current DBIx::DataStore object.
 
 =cut
 
-sub function2 {
+sub db {
+    my ($self) = @_;
+
+    return $self->{'dbh'};
 }
 
 =head1 AUTHOR
@@ -51,19 +68,14 @@ Jon Sime, C<< <jonsime at gmail.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-catalyst-model-dbix-datastore at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Catalyst-Model-DBIx-DataStore>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please file any bugs or support requests at the official GitHub repository, located
+at L<https://github.com/jsime/cm-datastore/issues>.
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
     perldoc Catalyst::Model::DBIx::DataStore
-
 
 You can also look for information at:
 
